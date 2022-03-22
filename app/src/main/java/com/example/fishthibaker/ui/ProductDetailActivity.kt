@@ -19,6 +19,7 @@ class ProductDetailActivity : AppCompatActivity() {
     lateinit var tvPrice: TextView
     lateinit var tvWeight: TextView
     lateinit var btnCart: Button
+    lateinit var btnBuy: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,19 +36,26 @@ class ProductDetailActivity : AppCompatActivity() {
         tvPrice = findViewById(R.id.tvPrice)
         tvWeight = findViewById(R.id.tvWeight)
         btnCart = findViewById(R.id.btnCart)
+        btnBuy = findViewById(R.id.btnBuy)
 
         tvName.text = model!!.name
         tvDesc.text = model!!.description
         tvCategory.text = model!!.category
-        tvPrice.text = model!!.price+" Rs"
+        tvPrice.text = model!!.price + " Rs"
         tvWeight.text = model!!.weight
 
         btnCart.setOnClickListener {
             val mAuth = FirebaseAuth.getInstance().currentUser
-            val product = FirebaseFirestore.getInstance().collection(Constant.PRODUCT_COLLECTION).document(model!!.id)
-            val user = FirebaseFirestore.getInstance().collection(Constant.USER_COLLECTION).document(mAuth!!.uid)
-            val cartModel = CartModel(product,user)
+            val product = FirebaseFirestore.getInstance().collection(Constant.PRODUCT_COLLECTION)
+                .document(model!!.id)
+            val user = FirebaseFirestore.getInstance().collection(Constant.USER_COLLECTION)
+                .document(mAuth!!.uid)
+            val cartModel = CartModel(product, user)
             FirebaseFirestore.getInstance().collection(Constant.CART_COLLECTION).add(cartModel)
+        }
+
+        btnBuy.setOnClickListener {
+
         }
     }
 

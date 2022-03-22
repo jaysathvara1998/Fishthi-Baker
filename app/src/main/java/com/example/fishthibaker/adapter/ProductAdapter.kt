@@ -54,9 +54,11 @@ class ProductAdapter(
         }
 
         holder.layout.setOnClickListener {
-            val intent = Intent(mContext, ProductDetailActivity::class.java)
-            intent.putExtra("product", model)
-            mContext.startActivity(intent)
+            if (!isCart) {
+                val intent = Intent(mContext, ProductDetailActivity::class.java)
+                intent.putExtra("product", model)
+                mContext.startActivity(intent)
+            }
         }
     }
 

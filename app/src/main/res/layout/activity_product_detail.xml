@@ -138,12 +138,29 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnCart"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_margin="@dimen/_10sdp"
-        android:text="Add to Cart"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/btnCart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_weight="1"
+            android:text="Add to Cart" />
+
+        <Button
+            android:id="@+id/btnBuy"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_weight="1"
+            android:text="Buy Now" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
