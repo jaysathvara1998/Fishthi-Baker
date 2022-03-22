@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".UserHomeFragment">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tvSearch"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:hint="Search Category">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.synnapps.carouselview.CarouselView
+        android:id="@+id/carouselView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        app:fillColor="#FFFFFF"
+        app:pageColor="#000000"
+        app:radius="6dp"
+        android:layout_margin="@dimen/_5sdp"
+        app:slideInterval="3000"
+        app:strokeColor="#FF777777"
+        app:strokeWidth="1dp" />
+
+    <GridView
+        android:id="@+id/gvCategory"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:horizontalSpacing="@dimen/_20sdp"
+        android:verticalSpacing="@dimen/_20sdp"
+        android:footerDividersEnabled="false"
+        tools:listitem="@layout/activity_gridview"
+        android:layout_margin="@dimen/_10sdp"
+        android:padding="1dp"
+        android:numColumns="2" />
+</LinearLayout>

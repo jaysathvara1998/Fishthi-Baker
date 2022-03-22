@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "11519193690",
+    "firebase_url": "https://cakeshop-2e8c6-default-rtdb.firebaseio.com",
+    "project_id": "cakeshop-2e8c6",
+    "storage_bucket": "cakeshop-2e8c6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:11519193690:android:5f66c219f34f45a0b59e63",
+        "android_client_info": {
+          "package_name": "com.example.fishthibaker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "11519193690-id50v0h0sc20e6f3lr7u8r8sgm348r2h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCUnToiZHbRlYNm_dUSLi9STMzBoHDm6w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "11519193690-id50v0h0sc20e6f3lr7u8r8sgm348r2h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
