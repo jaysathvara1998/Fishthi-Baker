@@ -12,6 +12,17 @@
         android:orientation="vertical"
         android:padding="@dimen/_10sdp">
 
+        <ImageView
+            android:id="@+id/icProduct"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_5sdp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/no_image"
+            app:civ_border_color="#FF000000"
+            app:civ_border_width="1dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -107,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16sdp"
-                tools:text="Cupcake" />
+                tools:text="12 Rs" />
 
         </LinearLayout>
 
@@ -139,6 +150,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/layoutButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -160,6 +172,32 @@
             android:layout_marginStart="@dimen/_5sdp"
             android:layout_weight="1"
             android:text="Buy Now" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutUpdateButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/btnEdit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_weight="1"
+            android:text="Edit Item" />
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_weight="1"
+            android:text="Delete Item" />
 
     </LinearLayout>
 

@@ -55,7 +55,7 @@ class CartFragment(val mContext: Context) : Fragment() {
         etSearch = view.findViewById(R.id.etSearch)
         tvNoData = view.findViewById(R.id.tvNoData)
 
-        val adapter = ProductAdapter(productList, false, isCart = true, mContext = mContext)
+        val adapter = ProductAdapter(productList, false, isCart = false, mContext = mContext)
 
         dialog!!.show()
         db.collection(Constant.CART_COLLECTION).whereEqualTo("userRef",userRef).get().addOnSuccessListener {
@@ -73,7 +73,7 @@ class CartFragment(val mContext: Context) : Fragment() {
 
                     val category = product.data!!["category"] as String?
                     val description = product.data!!["description"] as String?
-                    val id = product.data!!["id"] as String?
+                    val id = product.id
                     val image = product.data!!["image"] as String?
                     val name = product.data!!["name"] as String?
                     val price = product.data!!["price"] as String?
@@ -83,7 +83,7 @@ class CartFragment(val mContext: Context) : Fragment() {
                         ProductModel(
                             category!!,
                             description!!,
-                            id!!,
+                            id,
                             image!!,
                             name!!,
                             price!!,

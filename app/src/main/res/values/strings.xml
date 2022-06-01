@@ -6,4 +6,17 @@
     <string name="closeDrawer">close_drawer</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about_text">We will in general overlook that satisfaction doesn’t originate from something we don’t have, yet rather of perceiving and acknowledging what we do… Satisfaction is fellowship… Joy is festivity. It’s tied in with acquiring bliss and praising life.
+        \n\nSpreading bliss and commending each snapshot of life is the mantra at ‘Fishthi_Baker’. ‘Fishthi_Baker’ started their endeavor with Handmade Chocolates and gradually moved into Cakes, Pastries, and CupCakes , Donuts and Designer CupCakes , Nankhatai.
+\n\nEverything started with taking up little gathering requests. With the progression of time, we moved to counters in markets and now have App in the city Modasa. ‘Fishthi_Baker’ develops with each passing day and connecting with individuals and adding to mind-blowing festivals.
+\n\nIn 2016 ‘Fishthi_Baker’ wandered into advancement and innovativeness and presented productive Birthday Cakes, Customized Wedding Cakes, and Theme Cakes according to events. ‘Fishthi_Baker’ expects to be the main Cake App regarding quality, benefit, esteem for cash, and consumer loyalty.</string>
+    <string name="title_activity_payment">PaymentActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

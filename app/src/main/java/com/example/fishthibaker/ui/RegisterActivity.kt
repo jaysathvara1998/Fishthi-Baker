@@ -20,6 +20,8 @@ import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
 class RegisterActivity : AppCompatActivity() {
     var etFName: TextInputEditText? =
@@ -101,7 +103,7 @@ class RegisterActivity : AppCompatActivity() {
         etAddress = findViewById(R.id.etAddress)
         tvFName = findViewById(R.id.tvFName)
         tvLName = findViewById(R.id.tvLName)
-        tvAddress = findViewById(R.id.tvAddress)
+        tvAddress = findViewById(R.id.tvHouseNumber)
         tvEmail = findViewById(R.id.tvEmail)
         tvPhone = findViewById(R.id.tvContact)
         tvPassword = findViewById(R.id.tvPassword)
@@ -232,13 +234,26 @@ class RegisterActivity : AppCompatActivity() {
             etPassword!!.isFocusable = true
             return false
         }
-        if (password!!.length < 6) {
-            tvPassword!!.error = "Password length should more than six"
+        if (etPassword!!.text.toString().length < 8) {
+            tvPassword!!.error =
+                "Password should be 8 character long"
+            return false
+        } else if (!isValidPassword(etPassword!!.text.toString())) {
+            tvPassword!!.error =
+                "Password must contain Number, Lowercase, Uppercase and Special symbol"
             return false
         } else {
             tvPassword!!.error = ""
         }
         return true
+    }
+
+    fun isValidPassword(password: String?): Boolean {
+        val PASSWORD_PATTERN =
+            "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#\$%^&+=])(?=\\\\S+\$).{4,}\$"
+        val pattern = Pattern.compile(PASSWORD_PATTERN)
+        val matcher: Matcher = pattern.matcher(password)
+        return matcher.matches()
     }
 
     private fun isValidMobile(phone: String): Boolean {

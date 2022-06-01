@@ -6,9 +6,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProduct"
-        tools:listitem="@layout/row_product"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        tools:listitem="@layout/row_product" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAdd"

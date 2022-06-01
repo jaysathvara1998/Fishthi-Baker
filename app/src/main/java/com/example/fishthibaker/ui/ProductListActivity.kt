@@ -4,6 +4,7 @@ import android.app.ProgressDialog
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -42,16 +43,18 @@ class ProductListActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayShowHomeEnabled(true)
         supportActionBar!!.title = "$category List"
 
-        val adapter = ProductAdapter(productList, false, isCart = false, mContext = this)
+        val adapter = ProductAdapter(productList, false, isCart = true, mContext = this)
         dialog!!.show()
-        db.collection(Constant.PRODUCT_COLLECTION).get().addOnSuccessListener {
+        db.collection(Constant.PRODUCT_COLLECTION).whereEqualTo("category",category).get().addOnSuccessListener {
             productList.clear()
 
             for (item in it.documents) {
 
+                Log.e("ProductList","${item.data}")
+
                 val category = item.data!!["category"] as String?
                 val description = item.data!!["description"] as String?
-                val id = item.data!!["id"] as String?
+                val id = item.id
                 val image = item.data!!["image"] as String?
                 val name = item.data!!["name"] as String?
                 val price = item.data!!["price"] as String?
@@ -62,7 +65,7 @@ class ProductListActivity : AppCompatActivity() {
                         ProductModel(
                             category,
                             description!!,
-                            id!!,
+                            id,
                             image!!,
                             name!!,
                             price!!,
@@ -73,10 +76,10 @@ class ProductListActivity : AppCompatActivity() {
                     finalProductList.add(
                         ProductModel(
                             category,
-                            description!!,
-                            id!!,
-                            image!!,
-                            name!!,
+                            description,
+                            id,
+                            image,
+                            name,
                             price!!,
                             weight!!
                         )

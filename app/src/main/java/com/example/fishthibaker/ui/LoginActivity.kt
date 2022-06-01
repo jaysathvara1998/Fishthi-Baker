@@ -78,7 +78,13 @@ class LoginActivity : AppCompatActivity() {
             password = etPassword.text.toString()
 
             if (email == "admin" && password == "admin") {
-                startActivity(Intent(this, AdminHomeActivity::class.java))
+                val intent = Intent(
+                    applicationContext,
+                    AdminHomeActivity::class.java
+                )
+                intent.flags =
+                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
             } else if (validate()) {
                 dialog!!.show()
                 mAuth!!.signInWithEmailAndPassword(email!!, password!!)

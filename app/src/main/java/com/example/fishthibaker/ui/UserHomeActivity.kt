@@ -1,14 +1,21 @@
 package com.example.fishthibaker.ui
 
+import android.Manifest
+import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
@@ -16,6 +23,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.fishthibaker.*
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+
 
 class UserHomeActivity : AppCompatActivity() {
     private lateinit var drawer: DrawerLayout
@@ -29,10 +37,15 @@ class UserHomeActivity : AppCompatActivity() {
     // tags used to attach the fragments
     private val TAG_HOME = "home"
     private val TAG_PROFILE = "profile"
-    private val TAG_PHOTOS = "photos"
-    private val TAG_MOVIES = "movies"
-    private val TAG_NOTIFICATIONS = "notifications"
+    private val TAG_ORDER = "order"
+    private val TAG_CART = "cart"
+    private val TAG_OFFER = "offer"
     private val TAG_SETTINGS = "settings"
+    private val TAG_ABOUT = "about"
+    private val TAG_VISIT = "visit"
+    private val TAG_RATE = "rate"
+    private val TAG_CALL = "call"
+    private val TAG_TC = "tc"
     var CURRENT_TAG = TAG_HOME
 
     private var mHandler: Handler? = null
@@ -100,34 +113,22 @@ class UserHomeActivity : AppCompatActivity() {
                 ProfileFragment(this)
             }
             2 -> {
-                HomeFragment("My Order")
+                OrderFragment(this, false)
             }
             3 -> {
                 CartFragment(this)
             }
             4 -> {
-                HomeFragment("Offer")
+                TCFragment()
             }
             5 -> {
-                HomeFragment("Feedback")
+                AboutFragment()
             }
             6 -> {
-                HomeFragment("Terms and Conditions")
-            }
-            7 -> {
-                HomeFragment("About Us")
+                VisitFragment(this)
             }
             8 -> {
-                HomeFragment("Visit")
-            }
-            9 -> {
-                HomeFragment("Call")
-            }
-            10 -> {
-                HomeFragment("Rate Us")
-            }
-            11 -> {
-                HomeFragment("Logout")
+                RateFragment(this)
             }
             else -> HomeFragment("Other")
         }
@@ -153,43 +154,56 @@ class UserHomeActivity : AppCompatActivity() {
                 }
                 R.id.navOrder -> {
                     navItemIndex = 2
-                    CURRENT_TAG = TAG_PHOTOS
+                    CURRENT_TAG = TAG_ORDER
                 }
                 R.id.navCart -> {
                     navItemIndex = 3
-                    CURRENT_TAG = TAG_MOVIES
-                }
-                R.id.navOffer -> {
-                    navItemIndex = 4
-                    CURRENT_TAG = TAG_NOTIFICATIONS
-                }
-                R.id.navFeedback -> {
-                    navItemIndex = 5
-                    CURRENT_TAG = TAG_SETTINGS
+                    CURRENT_TAG = TAG_CART
                 }
                 R.id.navTC -> {
-                    navItemIndex = 6
-                    CURRENT_TAG = TAG_SETTINGS
+                    navItemIndex = 4
+                    CURRENT_TAG = TAG_TC
                 }
                 R.id.navAbout -> {
-                    navItemIndex = 7
-                    CURRENT_TAG = TAG_SETTINGS
+                    navItemIndex = 5
+                    CURRENT_TAG = TAG_ABOUT
                 }
                 R.id.navVisit -> {
-                    navItemIndex = 8
-                    CURRENT_TAG = TAG_SETTINGS
+                    navItemIndex = 6
+                    CURRENT_TAG = TAG_VISIT
                 }
                 R.id.navCall -> {
-                    navItemIndex = 9
-                    CURRENT_TAG = TAG_SETTINGS
+                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
+                        != PackageManager.PERMISSION_GRANTED
+                    ) {
+                        ActivityCompat.requestPermissions(
+                            this,
+                            arrayOf(Manifest.permission.CALL_PHONE),
+                            100
+                        )
+                    } else {
+                        val intent = Intent(Intent.ACTION_CALL)
+
+                        intent.data = Uri.parse("tel:1234567890")
+                        startActivity(intent)
+                    }
                 }
                 R.id.navRate -> {
-                    navItemIndex = 10
-                    CURRENT_TAG = TAG_SETTINGS
+                    navItemIndex = 8
+                    CURRENT_TAG = TAG_RATE
                 }
                 R.id.navLogout -> {
-                    FirebaseAuth.getInstance().signOut()
-                    startActivity(Intent(this, LoginActivity::class.java))
+                    AlertDialog.Builder(this)
+                        .setTitle("Fishthi Baker")
+                        .setMessage("Are you sure you want to Logout?")
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setPositiveButton(android.R.string.yes,
+                            DialogInterface.OnClickListener { dialog, whichButton ->
+                                FirebaseAuth.getInstance().signOut()
+                                startActivity(Intent(this, LoginActivity::class.java))
+                            })
+                        .setNegativeButton(android.R.string.no, null).show()
+
                 }
                 else -> navItemIndex = 0
             }
@@ -219,6 +233,18 @@ class UserHomeActivity : AppCompatActivity() {
 
         //calling sync state is necessary or else your hamburger icon wont show up
         actionBarDrawerToggle.syncState()
+    }
+
+    override fun onBackPressed() {
+        AlertDialog.Builder(this)
+            .setTitle("Fishthi Baker")
+            .setMessage("Are you sure you want to Logout?")
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .setPositiveButton(android.R.string.yes,
+                DialogInterface.OnClickListener { dialog, whichButton ->
+                    super.onBackPressed()
+                })
+            .setNegativeButton(android.R.string.no, null).show()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

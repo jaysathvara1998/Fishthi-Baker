@@ -44,14 +44,14 @@ class UserHomeFragment(val mContext: Context) : Fragment() {
         categoryList.add(Item("Cakes", R.drawable.ic_cake))
         categoryList.add(Item("Chocolates & Nankhatais", R.drawable.ic_chocolate))
         categoryList.add(Item("Cupcakes", R.drawable.ic_cupcake))
-        categoryList.add(Item("Pastries & rolls", R.drawable.ic_pastry))
+        categoryList.add(Item("Pastries & Rolls", R.drawable.ic_pastry))
         categoryList.add(Item("Designer Cupcake", R.drawable.ic_designer_cupcake))
         categoryList.add(Item("Donut", R.drawable.ic_donut))
 
         finalCategoryList.add(Item("Cakes", R.drawable.ic_cake))
         finalCategoryList.add(Item("Chocolates & Nankhatais", R.drawable.ic_chocolate))
         finalCategoryList.add(Item("Cupcakes", R.drawable.ic_cupcake))
-        finalCategoryList.add(Item("Pastries & rolls", R.drawable.ic_pastry))
+        finalCategoryList.add(Item("Pastries & Rolls", R.drawable.ic_pastry))
         finalCategoryList.add(Item("Designer Cupcake", R.drawable.ic_designer_cupcake))
         finalCategoryList.add(Item("Donut", R.drawable.ic_donut))
 

@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.children
@@ -14,6 +15,8 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.fishthibaker.AdminHomeFragment
+import com.example.fishthibaker.AdminRateFragment
+import com.example.fishthibaker.AdminTCFragment
 import com.example.fishthibaker.R
 import com.google.android.material.navigation.NavigationView
 
@@ -28,9 +31,9 @@ class AdminHomeActivity : AppCompatActivity() {
 
     // tags used to attach the fragments
     private val TAG_HOME = "home"
-    private val TAG_PHOTOS = "photos"
-    private val TAG_MOVIES = "movies"
-    private val TAG_NOTIFICATIONS = "notifications"
+    private val TAG_ORDER = "order"
+    private val TAG_TC = "T&C"
+    private val TAG_RATE = "rate"
     private val TAG_SETTINGS = "settings"
     var CURRENT_TAG = TAG_HOME
 
@@ -96,7 +99,13 @@ class AdminHomeActivity : AppCompatActivity() {
                 AdminHomeFragment(this)
             }
             1 -> {
-                AdminHomeFragment(this)
+                OrderFragment(this, true)
+            }
+            2 -> {
+                AdminTCFragment(this)
+            }
+            3 -> {
+                AdminRateFragment(this)
             }
             else -> AdminHomeFragment(this)
         }
@@ -116,9 +125,29 @@ class AdminHomeActivity : AppCompatActivity() {
                     navItemIndex = 0
                     CURRENT_TAG = TAG_HOME
                 }
+                R.id.navOrder -> {
+                    navItemIndex = 1
+                    CURRENT_TAG = TAG_ORDER
+                }
+                R.id.navTC -> {
+                    navItemIndex = 2
+                    CURRENT_TAG = TAG_TC
+                }
+                R.id.navRate -> {
+                    navItemIndex = 3
+                    CURRENT_TAG = TAG_RATE
+                }
                 R.id.navLogout -> {
-//                    FirebaseAuth.getInstance().signOut()
-                    startActivity(Intent(this, LoginActivity::class.java))
+                    AlertDialog.Builder(this)
+                        .setTitle("Fishthi Baker")
+                        .setMessage("Are you sure you want to Logout?")
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setPositiveButton(android.R.string.yes,
+                            { dialog, whichButton ->
+                                startActivity(Intent(this, LoginActivity::class.java))
+                            })
+                        .setNegativeButton(android.R.string.no, null).show()
+
                 }
                 else -> navItemIndex = 0
             }

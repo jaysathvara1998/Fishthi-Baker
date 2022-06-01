@@ -9,6 +9,21 @@
         android:title="Home" />
 
     <item
+        android:id="@+id/navOrder"
+        android:icon="@drawable/ic_order"
+        android:title="Orders" />
+
+    <item
+        android:id="@+id/navTC"
+        android:icon="@drawable/ic_feedback"
+        android:title="Terms and Conditions" />
+
+    <item
+        android:id="@+id/navRate"
+        android:icon="@drawable/ic_rate"
+        android:title="Rating" />
+
+    <item
         android:id="@+id/navLogout"
         android:icon="@drawable/ic_logout"
         android:title="Logout" />

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/_10sdp"
     tools:context=".ui.ProductListActivity">
 
     <com.google.android.material.textfield.TextInputLayout
@@ -13,7 +14,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         android:visibility="gone"
-        android:layout_margin="@dimen/_10sdp"
         android:hint="Search Product">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -26,6 +26,7 @@
         android:id="@+id/rvProduct"
         android:layout_width="match_parent"
         android:visibility="gone"
+        android:paddingBottom="?attr/actionBarSize"
         app:layout_constraintTop_toBottomOf="@id/tvSearch"
         android:layout_height="wrap_content"
         tools:listitem="@layout/row_product" />

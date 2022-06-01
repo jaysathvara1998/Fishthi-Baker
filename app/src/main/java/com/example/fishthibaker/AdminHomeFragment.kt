@@ -21,7 +21,6 @@ class AdminHomeFragment(var mContext: Context) : Fragment() {
 
     override fun onResume() {
         super.onResume()
-//        adapter = ProductAdapter(productList)
         getProductList()
     }
 
@@ -67,7 +66,7 @@ class AdminHomeFragment(var mContext: Context) : Fragment() {
 
                 val category = item.data!!["category"] as String?
                 val description = item.data!!["description"] as String?
-                val id = item.data!!["id"] as String?
+                val id = item.id
                 val image = item.data!!["image"] as String?
                 val name = item.data!!["name"] as String?
                 val price = item.data!!["price"] as String?
@@ -77,7 +76,7 @@ class AdminHomeFragment(var mContext: Context) : Fragment() {
                     ProductModel(
                         category!!,
                         description!!,
-                        id!!,
+                        id,
                         image!!,
                         name!!,
                         price!!,

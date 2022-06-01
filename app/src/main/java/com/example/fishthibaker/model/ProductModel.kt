@@ -11,7 +11,9 @@ data class ProductModel(
     val name: String,
     val price: String,
     val weight: String
-):Serializable
+) : Serializable {
+    constructor() : this("", "", "", "", "", "", "")
+}
 
 data class CartModel(
     val productRef: DocumentReference,
